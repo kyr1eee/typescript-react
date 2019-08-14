@@ -1,5 +1,5 @@
-import { number } from "prop-types";
-
+import React from 'react';
+export let name = "类";
 /**
  * 类
  */
@@ -93,3 +93,11 @@ interface Point3d extends Point {
     z: number;
 }
 let point3d: Point3d = { x: 43, y: 6, z: 35 }
+
+/**
+ * react
+ */
+interface IProps {}
+// IProps检测props, any检测state
+class A extends React.Component<IProps, any> {
+}

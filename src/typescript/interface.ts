@@ -1,4 +1,4 @@
-export let isDone: boolean = false;
+export let name = "接口";
 
 
 /******************************
@@ -9,6 +9,7 @@ interface LOLName {
     name: string;
     size?: number;  
     version?: string;   // 可选属性
+    // a!: string;  // 强制解析
     [propName: string]: any;    // 可接收额外属性
 }
 
@@ -18,7 +19,7 @@ function showName(lolObj: LOLName) {
     console.log(lolObj.name);
 }
 
-showName({size: 1024, name: 'riven', url: 'https://lol.qq.com'});
+showName({size: 1024, name: 'riven', url: 'https://lol.qq.com', a: 'riven'});
 
 // 函数返回类型检测
 function test1(config: LOLName) : {name: string} {

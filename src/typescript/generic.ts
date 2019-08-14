@@ -1,3 +1,4 @@
+export let name = "泛型";
 export function index(arg: any): any {
     return arg + ''; // 传入数字, 返回字符串
 }
@@ -71,4 +72,9 @@ getProperty(x, '666');
  */
 function create<T>(c: {new(): T; }): T {
     return new c();
+}
+
+const people:Record<string,any> = {
+    name: 'chengfeng',
+    age: 10
 }

@@ -1,4 +1,10 @@
-export let type: number = 1;
+export let type = "类型";
+/**
+ * 环境声明
+ * 允许使用现有的JavaScript库
+ * declare: 试图表诉一个其他地方已经存在的代码
+ */
+declare let path: any;
 /**
  * 类型断言
  */
@@ -75,3 +81,18 @@ let undefined1: undefined = undefined;
 function error(message: string): never {
     throw new Error(message);
 }
+
+/**
+ * object
+ */
+declare function create(obj: object | null): void;
+create({props: 1});
+
+/**
+ * 字面量类型
+ */
+function JOJO(arg: 1): 'JOJO， 这也在你的计划之中吗' {
+    return 'JOJO， 这也在你的计划之中吗' 
+}
+type obj = {a: number, b: string}
+declare var window: Window;
