@@ -95,4 +95,18 @@ function JOJO(arg: 1): 'JOJO， 这也在你的计划之中吗' {
     return 'JOJO， 这也在你的计划之中吗' 
 }
 type obj = {a: number, b: string}
+
+// 以下为test
+
 declare var window: Window;
+
+type Record<K extends keyof any, T> = {
+    [P in K]: T;
+};
+
+interface T1 {};
+
+type RecordT1 = Record<'Test', T1>;
+var a: RecordT1 = {Test: 1};
+
+type Readonly<T> = { readonly [P in keyof T]: T[P] };

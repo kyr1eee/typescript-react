@@ -13,6 +13,11 @@ interface LOLName {
     [propName: string]: any;    // 可接收额外属性
 }
 
+// 数组接口
+interface NumberArray {
+    [index: number]: number;
+}
+let fibonacci: NumberArray = [1, 1, 2, 3, 5];
 
 // 接口类型检测
 function showName(lolObj: LOLName) {

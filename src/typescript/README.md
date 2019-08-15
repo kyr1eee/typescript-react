@@ -56,6 +56,12 @@ function test<T, U>(T: a, U: b) : T & U { ... }
 let foo: 'Hello World';
 type CouponType = 1 | 2 | 3;
 ```
+### 索引签名
+```
+interface Test<T> {
+  [K: string]: T
+}
+```
 ### 环境声明
 ```
 // global.d.ts
@@ -141,7 +147,8 @@ type Id<T extends string> = {
 type MyId = Id<'me'>
 type UId = Id<'u'>
 ```
-### keyof
+### keyof  
+产生联合类型
 ```
 interface iPeople {
   name: string;
@@ -151,10 +158,79 @@ interface iPeople {
 type T = keyof iPeople // -> "name" | "age"
 ```
 
-### in
+### in  
+遍历枚举类型
 ```
 type Keys = "a" | "b"
 type Obj =  {
   [p in Keys]: any
-} // -> { a: any, b: any }
+} 
+// obj -> { a: any, b: any }
+```
+
+### Require  
+使传入的属性为必选项
+```
+// in遍历keyof返回的枚举类型
+// -? 代表将 ? 去掉, 使其变为必选项
+
+type Require<T> = {
+  [P in keyof T]-?: T[P];
+}
+
+interface User {
+  id: number;
+  age: number;
+  name: string;
+};
+
+type RequireUser = Require<User>; // { id: number, age: number, name: string}
+```
+
+### Partial  
+传入属性为可选项
+```
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+}
+
+interface User {
+  id: number;
+  age: number;
+  name: string;
+};
+
+type PartialUser = Partial<User>; // { id?: number, age?: number, name?: string}
+```
+
+### Pick
+```
+// 从 T 中取出 一系列 K 的属性
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+
+interface User {
+  id: number;
+  age: number;
+  name: string;
+};
+
+type PickUser = Pick<User, "id" | "age">; // { id: number, age: string }
+```
+
+### Record
+```
+// 联合属性应用同一类型
+type Record<K extends keyof any, T> = {
+    [P in K]: T;
+};
+type RecordT1 = Record<'Test' | 'Show' | 'emmm', string>; // {Test: string, Show: string, emmm: string}
+```
+
+### Readonly
+```
+type Readonly<T> = { 
+  readonly [P in keyof T]: T[P] 
+};
 ```
