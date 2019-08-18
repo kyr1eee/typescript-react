@@ -5,6 +5,15 @@
 [详细配置](https://jkchao.github.io/typescript-book-chinese/project/compilationContext.html#tsconfig-json)
 
 ## 基础概念
+### 接口
+```
+// 一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集
+interface Person {
+    name: string;
+    age?: number;
+    [propName: string]: any; // 若设置为string则报错 
+}
+```
 ### 类型断言
 ```
 let a = 1;
